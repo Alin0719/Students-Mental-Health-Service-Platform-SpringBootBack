@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.EducationDao">
+    <select id="getAlledu" resultType="com.liu.mentalhealth.entity.Education">
+        select * from education
+        order by eno desc
+    </select>
+    <select id="getFiveedu" resultType="com.liu.mentalhealth.entity.Education">
+        select * from education
+        order by eno
+        desc limit 5
+    </select>
+    <select id="geteduByid" resultType="com.liu.mentalhealth.entity.Education">
+        select * from education
+        where eno = #{eno}
+    </select>
+
+    <select id="geteduByvague" resultType="com.liu.mentalhealth.entity.Education">
+        select * from education
+        where etitle like #{str} or econtent like #{str} or CAST(eno as CHAR) like #{str} or etime like #{str}
+    </select>
+
+    <insert id="addedu">
+        insert into education(etitle,econtent,etime,eimg)
+        values(#{education.etitle},#{education.econtent},#{education.etime},#{education.eimg})
+    </insert>
+
+    <delete id="deledu">
+        delete from education
+        where eno = #{eno}
+    </delete>
+
+    <update id="updatetitle">
+        update education
+        set etitle = #{etitle}
+        where eno = #{eno}
+    </update>
+
+    <update id="updatecontent">
+        update education
+        set econtent = #{econtent}
+        where eno = #{eno}
+    </update>
+
+    <update id="updatetime">
+        update education
+        set etime = #{etime}
+        where eno = #{eno}
+    </update>
+
+    <update id="updateimg">
+        update education
+        set eimg = #{eimg}
+        where eno = #{eno}
+    </update>
+
+</mapper>

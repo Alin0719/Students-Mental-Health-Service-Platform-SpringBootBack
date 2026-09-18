@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.QoptionDao">
+
+    <select id="getalloption" resultType="com.liu.mentalhealth.entity.Qoption">
+        select * from qoption
+    </select>
+
+    <select id="getopbyid" resultType="com.liu.mentalhealth.entity.Qoption">
+        select * from qoption
+        where id = #{id}
+    </select>
+
+    <select id="getopbyqid" resultType="com.liu.mentalhealth.entity.Qoption">
+        select * from qoption
+        where qid = #{qid}
+    </select>
+
+    <insert id="addoption">
+        insert into qoption(oname,checked,sweight,letter,qid)
+        values(oname = #{oname},checked = #{checked},sweight = #{sweight},letter = #{letter},qid = #{qid})
+    </insert>
+
+    <delete id="deloption">
+        delete from qoption
+        where id = #{id}
+    </delete>
+
+    <update id="updateoname">
+        update qoption
+        set oname = #{oname}
+        where id = #{id}
+    </update>
+
+    <update id="updatesweight">
+        update qoption
+        set sweight = #{sweight}
+        where id = #{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.QuestionDao">
+    
+    <select id="getAllque" resultType="com.liu.mentalhealth.entity.Question">
+        select * from question
+    </select>
+    <select id="getquebyvag" resultType="com.liu.mentalhealth.entity.Question">
+        select * from question
+        where qname like #{str} or CAST(id as CHAR) like #{str} or CAST(tfid as CHAR) like #{str}
+    </select>
+    <select id="getqueByid" resultType="com.liu.mentalhealth.entity.Question">
+        select * from question
+        where id = #{id}
+    </select>
+
+    <insert id="addquestion">
+        insert into question(tfid,ismultiple,qname,score)
+        values(tfid = #{tfid},ismultiple = #{ismultiple},qname = #{qname},score = #{score})
+    </insert>
+
+    <delete id="delquestion">
+        delete from question
+        where id = #{id}
+    </delete>
+
+    <update id="updateqname">
+        update question
+        set qname = #{qname}
+        where id = #{id}
+    </update>
+
+    <update id="updatescore">
+        update question
+        set score = #{score}
+        where id = #{id}
+    </update>
+</mapper>

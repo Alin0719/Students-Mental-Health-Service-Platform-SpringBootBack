@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.TreereplyDao">
+    <select id="getAllreply" resultType="com.liu.mentalhealth.entity.Treereply">
+        select * from treereply
+    </select>
+
+    <select id="getreplybyvag" resultType="com.liu.mentalhealth.entity.Treereply">
+        select * from treereply
+        where CAST(trno as CHAR) like #{str} or CAST(replyno as CHAR) like #{str} or uid like #{str} or repcontent like #{str} or reptime like #{str}
+    </select>
+
+    <select id="getreplyByreplyno" resultType="com.liu.mentalhealth.entity.Treereply">
+        select * from treereply
+        where replyno = #{replyno}
+    </select>
+
+    <select id="getreplyByuid" resultType="com.liu.mentalhealth.entity.Treereply">
+        select * from treereply
+        where uid = #{uid}
+    </select>
+
+    <select id="getreBytrnoanduid" resultType="com.liu.mentalhealth.entity.ReplyandUser">
+        select replyno,trno,user.uid,uname,uimg,repcontent,reptime
+        from treereply,user
+        where treereply.uid = user.uid and trno = #{trno}
+    </select>
+
+    <select id="getreplyBytrno" resultType="com.liu.mentalhealth.entity.Treereply">
+        select * from treereply
+        where trno = #{trno}
+    </select>
+
+    <select id="getreplyanduserbyuid" resultType="com.liu.mentalhealth.entity.ReplyandUser">
+        select replyno,trno,user.uid,uname,uimg,repcontent,reptime
+        from user,treereply
+        where user.uid = treereply.uid and user.uid = #{uid}
+    </select>
+
+    <insert id="addreply">
+        insert into treereply(trno,uid,repcontent,reptime)
+        values(#{trno},#{uid},#{repcontent},#{reptime})
+    </insert>
+
+    <delete id="delreply">
+        delete from treereply
+        where replyno = #{replyno}
+    </delete>
+
+</mapper>

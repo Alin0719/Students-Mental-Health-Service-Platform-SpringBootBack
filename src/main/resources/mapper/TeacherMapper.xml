@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.TeacherDao">
+
+    <select id="getAllteachers" resultType="com.liu.mentalhealth.entity.Teacher">
+        select * from teacher
+    </select>
+
+    <select id="getteacherbyvag" resultType="com.liu.mentalhealth.entity.Teacher">
+        select * from teacher
+        where tid like #{str} or tname like #{str} or CAST(tage as CHAR) like #{str} or tsex like #{str} or tiphone like #{str} or qualification like #{str}
+    </select>
+
+    <select id="getBytid" resultType="com.liu.mentalhealth.entity.Teacher">
+        select * from teacher
+        where tid = #{tid}
+    </select>
+
+    <select id="getBytidandtpwd" resultType="com.liu.mentalhealth.entity.Teacher">
+        select * from teacher
+        where tid = #{tid} and tpwd = #{tpwd}
+    </select>
+
+    <insert id="addteacher">
+        insert into teacher
+        values(#{tid}, #{tpwd}, #{tname}, #{tsex}, #{tage}, #{tiphone}, #{qualification}, #{timg})
+    </insert>
+
+    <delete id="delteacher">
+        delete from teacher
+        where tid = #{tid}
+    </delete>
+
+    <update id="updatetage">
+        update teacher
+        set tage = #{tage}
+        where tid = #{tid}
+    </update>
+
+    <update id="updatetsex">
+        update teacher
+        set tsex = #{tsex}
+        where tid = #{tid}
+    </update>
+
+    <update id="updatetiphone">
+        update teacher
+        set tiphone = #{tiphone}
+        where tid = #{tid}
+    </update>
+
+    <update id="upqualification">
+        update teacher
+        set qualification = #{qualification}
+        where tid = #{tid}
+    </update>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.TestResultDao">
+    <select id="getalltresult" resultType="com.liu.mentalhealth.entity.TestResult">
+        select * from testResult
+    </select>
+
+    <select id="getresultbyvag" resultType="com.liu.mentalhealth.entity.TestResult">
+        select * from testResult
+        where uid like #{str}
+    </select>
+
+    <select id="gettresultbyuid" resultType="com.liu.mentalhealth.entity.TestResult">
+        select * from testResult
+        where uid = #{uid}
+    </select>
+
+    <insert id="addresult">
+        insert into testResult
+        values(#{uid},#{tfid},#{genIndex},#{positivenum},#{positivelevel},#{somavg},#{obseavg},#{interavg},#{depressavg},#{anxietyavg},#{hostavg},#{photicavg},#{paravg},#{psychoavg},#{otheravg})
+    </insert>
+
+    <delete id="delresult">
+        delete from testResult
+        where uid = #{uid} and tfid = #{tfid}
+    </delete>
+
+</mapper>

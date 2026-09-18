@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.UserDao">
+    <!--获取全部用户数据-->
+    <select id="getAllUser" resultType="com.liu.mentalhealth.entity.User">
+        select *
+        from user
+    </select>
+  <!--模糊查询-->
+    <select id="getusersByvague" resultType="com.liu.mentalhealth.entity.User">
+        select * from user
+        where uid like #{msg} or uname like #{msg} or CAST(uage as CHAR) like #{msg} or usex like #{msg} or uiphone like #{msg} or cno like #{msg}
+    </select>
+    <!--通过id获取用户信息-->
+    <select id="getUserById" resultType="com.liu.mentalhealth.entity.User">
+        select *
+        from user
+        where uid = #{uid}
+    </select>
+
+
+
+    <select id="getUserByidandpwd" resultType="com.liu.mentalhealth.entity.User">
+        select *
+        from user
+        where uid = #{uid} and upwd = #{upwd}
+    </select>
+
+    <!--添加用户-->
+    <insert id="AddUser">
+        insert into user
+        values(#{uid},#{upwd},#{uname},#{usex},#{uage},#{uiphone},#{cno},#{uimg});
+    </insert>
+
+    <!--删除一个用户信息-->
+    <delete id="delUser">
+        delete from user
+        where uid = #{uid}
+    </delete>
+
+    <!--通过用户id修改用户密码-->
+    <update id="updateUserpwd">
+        update user
+        set upwd = #{upwd}
+        where uid =#{uid}
+    </update>
+
+    <!--通过用户id修改用户姓名-->
+    <update id="updateUsername">
+        update user
+        set uname = #{uname}
+        where uid =#{uid}
+    </update>
+
+    <!--通过用户id修改用户性别-->
+    <update id="updateUsersex">
+        update user
+        set usex = #{usex}
+        where uid =#{uid}
+    </update>
+
+    <!--通过用户id修改用户年龄-->
+    <update id="updateUserage">
+        update user
+        set uage = #{uage}
+        where uid =#{uid}
+    </update>
+
+    <!--通过用户id修改用户手机号码-->
+    <update id="updateUseriphone">
+        update user
+        set uiphone = #{uiphone}
+        where uid =#{uid}
+    </update>
+
+    <!--通过用户id修改用户班级号-->
+    <update id="updateUsercno">
+        update user
+        set cno = #{cno}
+        where uid =#{uid}
+    </update>
+</mapper>

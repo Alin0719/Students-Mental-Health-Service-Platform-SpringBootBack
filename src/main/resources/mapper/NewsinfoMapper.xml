@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.NewsinfoDao">
+    <select id="getAllnews" resultType="com.liu.mentalhealth.entity.Newsinfo">
+        select *
+        from newsinfo
+        order by nno desc
+    </select>
+
+    <select id="getFivenew" resultType="com.liu.mentalhealth.entity.Newsinfo">
+        select * from newsinfo
+        order by nno
+        desc limit 5
+    </select>
+    <select id="getnewsByid" resultType="com.liu.mentalhealth.entity.Newsinfo">
+        select *
+        from newsinfo
+        where nno = #{nno}
+    </select>
+
+    <select id="getnewsByvague" resultType="com.liu.mentalhealth.entity.Newsinfo">
+        select *
+        from newsinfo
+        where CAST(nno as CHAR) like #{msgs} or ntitle like #{msgs} or ncontent like #{msgs} or nauthor like #{msgs} or ntime like #{msgs}
+    </select>
+
+    <insert id="addnews">
+        insert into newsinfo(ntitle,ncontent,nauthor,ntime,newsimg)
+        values(#{newsinfo.ntitle},#{newsinfo.ncontent},#{newsinfo.nauthor},#{newsinfo.ntime},#{newsinfo.newsimg})
+    </insert>
+    
+    <delete id="delnews">
+        delete from newsinfo
+        where nno = #{nno}
+    </delete>
+    
+    <update id="updatentitle">
+        update newsinfo
+        set ntitle = #{ntitle}
+        where nno = #{nno}
+    </update>
+
+    <update id="updatencontent">
+        update newsinfo
+        set binary ncontent = #{ncontent}
+        where nno = #{nno}
+    </update>
+
+    <update id="updatenauthor">
+        update newsinfo
+        set nauthor = #{nauthor}
+        where nno = #{nno}
+    </update>
+
+    <update id="updatentime">
+        update newsinfo
+        set ntime = #{ntime}
+        where nno = #{nno}
+    </update>
+
+    <update id="updatenewsimg">
+        update newsinfo
+        set newsimg = #{newsimg}
+        where nno = #{nno}
+    </update>
+</mapper>

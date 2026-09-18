@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.TreepostDao">
+
+    <select id="getAlltreepost" resultType="com.liu.mentalhealth.entity.Treepost">
+        select * from treepost
+    </select>
+
+    <select id="getpostbyvag" resultType="com.liu.mentalhealth.entity.Treepost">
+        select * from treepost
+        where CAST(trno as CHAR) like #{str} or uid like #{str} or trucontent like #{str} or trtime like #{str}
+    </select>
+
+    <select id="getpostanduser" resultType="com.liu.mentalhealth.entity.TreeandUser">
+        select trno,user.uid,uname,uimg,trucontent,trtime
+        from treepost,user
+        where user.uid = treepost.uid
+    </select>
+
+    <select id="getpostbytrno" resultType="com.liu.mentalhealth.entity.Treepost">
+        select * from treepost
+        where trno = #{trno}
+    </select>
+
+    <select id="getpostbyuid" resultType="com.liu.mentalhealth.entity.Treepost">
+        select * from treepost
+        where uid = #{uid}
+    </select>
+
+    <select id="getpostByuidAndtrno" resultType="com.liu.mentalhealth.entity.TreeandUser">
+        select trno,user.uid,uname,uimg,trucontent,trtime
+        from treepost,user
+        where user.uid = treepost.uid and trno = #{trno}
+    </select>
+
+    <select id="getpostanduserbyuid" resultType="com.liu.mentalhealth.entity.TreeandUser">
+        select trno,user.uid,uname,uimg,trucontent,trtime
+        from user,treepost
+        where user.uid = treepost.uid and user.uid = #{uid}
+    </select>
+
+    <insert id="addtreepost">
+        insert into treepost(uid,trucontent,trtime)
+        values(#{uid},#{trucontent},#{trtime})
+    </insert>
+
+    <delete id="deltreepost">
+        delete from treepost
+        where trno = #{trno}
+    </delete>
+
+</mapper>

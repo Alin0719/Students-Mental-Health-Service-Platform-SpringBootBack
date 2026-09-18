@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liu.mentalhealth.dao.ClassDao">
+    <select id="getAllclass" resultType="com.liu.mentalhealth.entity.Class">
+        select * from class
+    </select>
+
+    <select id="getbycid" resultType="com.liu.mentalhealth.entity.Class">
+        select * from class
+        where cno = #{cno}
+    </select>
+
+    <select id="getclassByvague" resultType="com.liu.mentalhealth.entity.Class">
+        select * from class
+        where cno like #{str} or cname like #{str} or cmajor like #{str}
+    </select>
+
+    <delete id="delclass">
+        delete from class
+        where cno = #{cno}
+    </delete>
+
+    <insert id="insertclass">
+        insert into class
+        values(#{cno},#{cname},#{cmajor})
+    </insert>
+
+</mapper>
